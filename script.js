@@ -13,41 +13,44 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function singleGame(playerSelection) {
+function singleGame(playerSelection, computerChoice) {
     
-    playerSelection = playerSelection.slice().toLowerCase(); //make string lower case
-    let computerChoice = getComputerChoice() 
+    playerSelection = playerSelection.slice().toLowerCase(); //make string lower case 
     computerChoice = computerChoice.slice().toLowerCase(); //make string lower case
     
     //rock vs paper
     if (playerSelection == 'rock' && computerChoice == 'paper') { 
-        console.log('You lose! Computer selected paper. Paper beats Rock...');
+        return ('You lose! Computer selected paper. Paper beats Rock...');
     
     //rock vs scissors
     } else if (playerSelection == 'rock' && computerChoice == 'scissors') { 
-        console.log('You win! Computer selected scissors. Rock beats Scissors!');
+        return ('You win! Computer selected scissors. Rock beats Scissors!');
     
     //paper vs rock
     } else if (playerSelection == 'paper' && computerChoice == 'rock') {
-        console.log('You win! Computer selected rock. Paper beats Rock!');
+        return ('You win! Computer selected rock. Paper beats Rock!');
     
     //paper vs scissors
     } else if (playerSelection == 'paper' && computerChoice == 'scissors') {
-        console.log('You lose! Computer selected scissors. Scissors beats Paper!');
+        return ('You lose! Computer selected scissors. Scissors beats Paper!');
     
     //scissors vs rock
     } else if (playerSelection == 'scissors' && computerChoice == 'rock') {
-        console.log('You lose! Computer selected rock. Rock beats Scissors!');
+        return ('You lose! Computer selected rock. Rock beats Scissors!');
     
     //scissors vs paper
     } else if (playerSelection == 'scissors' && computerChoice == 'paper') {
-        console.log('You win! Computer selected paper. Scissors beats Paper!');
+        return ('You win! Computer selected paper. Scissors beats Paper!');
     
     //draw
     } else if (playerSelection == computerChoice) {
-        console.log("'Oy! It's a draw!'");
+        return ("'Oy! It's a draw!'");
     }
 }
 
-console.log(singleGame('paper'))
+const playerSelection = 'paper'
+const computerChoice = getComputerChoice()
+console.log(singleGame(playerSelection, computerChoice)) 
+
+
 
