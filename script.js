@@ -20,33 +20,46 @@ function playRound(playerSelection, computerChoice) {
     
     //rock vs paper
     if (playerSelection == 'rock' && computerChoice == 'paper') { 
-        return ('You lose! Computer selected paper. Paper beats Rock...');
+        return ('You lose! Paper beats Rock...');
     
     //rock vs scissors
     } else if (playerSelection == 'rock' && computerChoice == 'scissors') { 
-        return ('You win! Computer selected scissors. Rock beats Scissors!');
+        return ('You win! Rock beats Scissors!');
     
     //paper vs rock
     } else if (playerSelection == 'paper' && computerChoice == 'rock') {
-        return ('You win! Computer selected rock. Paper beats Rock!');
+        return ('You win! Paper beats Rock!');
     
     //paper vs scissors
     } else if (playerSelection == 'paper' && computerChoice == 'scissors') {
-        return ('You lose! Computer selected scissors. Scissors beats Paper!');
+        return ('You lose! Scissors beats Paper!');
     
     //scissors vs rock
     } else if (playerSelection == 'scissors' && computerChoice == 'rock') {
-        return ('You lose! Computer selected rock. Rock beats Scissors!');
+        return ('You lose! Rock beats Scissors!');
     
     //scissors vs paper
     } else if (playerSelection == 'scissors' && computerChoice == 'paper') {
-        return ('You win! Computer selected paper. Scissors beats Paper!');
+        return ('You win! Scissors beats Paper!');
     
     //draw
     } else if (playerSelection == computerChoice) {
         return ("'Oy! It's a draw!'");
     }
 }
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const computerChoice = getComputerChoice();
+        const playerSelection = prompt("Choose your weapon: Rock, Paper, or Scissor");
+        const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1,).toLowerCase();
+        
+        console.log(`You chose: ${playerChoice}, Computer chose: ${computerChoice}`)
+        console.log(playRound(playerSelection, computerChoice));
+    }
+}
+
+game()
 
 
 
