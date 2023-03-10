@@ -13,7 +13,7 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function singleGame(playerSelection, computerChoice) {
+function playRound(playerSelection, computerChoice) {
     
     playerSelection = playerSelection.slice().toLowerCase(); //make string lower case 
     computerChoice = computerChoice.slice().toLowerCase(); //make string lower case
@@ -48,9 +48,6 @@ function singleGame(playerSelection, computerChoice) {
     }
 }
 
-const playerSelection = 'paper'
-const computerChoice = getComputerChoice()
-console.log(singleGame(playerSelection, computerChoice)) 
 
 
 
