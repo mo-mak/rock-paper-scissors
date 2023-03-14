@@ -48,16 +48,16 @@ function playRound(playerSelection, computerChoice) {
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const computerChoice = getComputerChoice();
-        const playerSelection = prompt("Choose your weapon: Rock, Paper, or Scissor");
-        const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1,).toLowerCase();
+// function game() {
+//     for (let i = 0; i < 5; i++) {
+//         const computerChoice = getComputerChoice();
+//         const playerSelection = prompt("Choose your weapon: Rock, Paper, or Scissor");
+//         const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1,).toLowerCase();
         
-        console.log(`You chose: ${playerChoice}, Computer chose: ${computerChoice}`)
-        console.log(playRound(playerSelection, computerChoice));
-    }
-}
+//         console.log(`You chose: ${playerChoice}, Computer chose: ${computerChoice}`)
+//         console.log(playRound(playerSelection, computerChoice));
+//     }
+// }
 
 game()
 
