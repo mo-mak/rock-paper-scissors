@@ -53,6 +53,12 @@ rockBtn.addEventListener("click", function() {
     let computerChoice = getComputerChoice();
     let playerSelection = rockBtn.textContent;
 
+    // this section may look strange. There are 2 things happening here:
+    // 1. both selections are being converted to lowercase for game logic purposes
+    // 2. the playerSelection variable which is derived from the textContent of the 
+    //    rockBtn at first will look like this: "\n      rock\n       ". Therefore 
+    //    it is very important to first remove the \n and then trim the spaces of the
+    //    variable in order to get "rock" 
     playerSelection = playerSelection.slice().toLowerCase();
     playerSelection = playerSelection.replace(/\n/g,""); 
     playerSelection = playerSelection.trim();
@@ -68,6 +74,7 @@ paperBtn.addEventListener("click", function() {
     let computerChoice = getComputerChoice();
     let playerSelection = paperBtn.textContent;
 
+    //See comment about this section in rockBtn
     playerSelection = playerSelection.slice().toLowerCase();
     playerSelection = playerSelection.replace(/\n/g,""); 
     playerSelection = playerSelection.trim();
@@ -83,6 +90,7 @@ scissorsBtn.addEventListener("click", function() {
     let computerChoice = getComputerChoice();
     let playerSelection = scissorsBtn.textContent;
 
+    //See comment about this section in rockBtn
     playerSelection = playerSelection.slice().toLowerCase();
     playerSelection = playerSelection.replace(/\n/g,""); 
     playerSelection = playerSelection.trim();
@@ -97,6 +105,10 @@ const displayResults = function(result) {
     const resultContainer = document.getElementById('result-container');
     const resultToDisplay = document.createElement('p');
     
+    // This part will ensure that childNodes are not piled onto resultContainer 
+    // one after another. everytime this function is called (which is anytime one 
+    // of the buttons is pressed), the resultContainer will be cleared of the last
+    // win draw or lose message that it was displaying here from the last round.
     if (resultContainer.hasChildNodes()){
         resultContainer.removeChild(resultContainer.firstChild);
     }
