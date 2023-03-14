@@ -45,7 +45,7 @@ function playRound(playerSelection, computerChoice) {
     //draw
     } else if (playerSelection == computerChoice) {
         return ("'Oy! It's a draw!'");
-    }
+    } 
 }
 
 const rockBtn = document.getElementById('rock');
@@ -60,8 +60,7 @@ rockBtn.addEventListener("click", function() {
 
     let roundResult = playRound(playerSelection, computerChoice);
 
-    console.log(roundResult);
-    
+    displayResults(roundResult);
 });
 
 const paperBtn = document.getElementById('paper');
@@ -76,8 +75,7 @@ paperBtn.addEventListener("click", function() {
 
     let roundResult = playRound(playerSelection, computerChoice);
 
-    console.log(roundResult);
-    
+    displayResults(roundResult); 
 });
 
 const scissorsBtn = document.getElementById('scissors');
@@ -92,9 +90,20 @@ scissorsBtn.addEventListener("click", function() {
 
     let roundResult = playRound(playerSelection, computerChoice);
 
-    console.log(roundResult);
-    
+    displayResults(roundResult);
 });
+
+const displayResults = function(result) {
+    const resultContainer = document.getElementById('result-container');
+    const resultToDisplay = document.createElement('p');
+    
+    if (resultContainer.hasChildNodes()){
+        resultContainer.removeChild(resultContainer.firstChild);
+    }
+    
+    resultToDisplay.textContent = result;
+    resultContainer.appendChild(resultToDisplay);
+};
 
 
 

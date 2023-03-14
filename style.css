@@ -1,6 +1,19 @@
 #main-container{
     display: flex;
     justify-content: center;
-    gap: 20px;
+    flex-direction: column;
     padding: 200px;
+    gap: 20px;
+    border: 2px solid black;
+}
+
+#buttons-container {
+    display: flex;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#result-container{
+    height: 50px;
 }
