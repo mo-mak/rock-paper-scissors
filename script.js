@@ -48,6 +48,56 @@ function playRound(playerSelection, computerChoice) {
     }
 }
 
+const rockBtn = document.getElementById('rock');
+rockBtn.addEventListener("click", function() {
+    let computerChoice = getComputerChoice();
+    let playerSelection = rockBtn.textContent;
+
+    playerSelection = playerSelection.slice().toLowerCase();
+    playerSelection = playerSelection.replace(/\n/g,""); 
+    playerSelection = playerSelection.trim();
+    computerChoice = computerChoice.slice().toLowerCase();
+
+    let roundResult = playRound(playerSelection, computerChoice);
+
+    console.log(roundResult);
+    
+});
+
+const paperBtn = document.getElementById('paper');
+paperBtn.addEventListener("click", function() {
+    let computerChoice = getComputerChoice();
+    let playerSelection = paperBtn.textContent;
+
+    playerSelection = playerSelection.slice().toLowerCase();
+    playerSelection = playerSelection.replace(/\n/g,""); 
+    playerSelection = playerSelection.trim();
+    computerChoice = computerChoice.slice().toLowerCase();
+
+    let roundResult = playRound(playerSelection, computerChoice);
+
+    console.log(roundResult);
+    
+});
+
+const scissorsBtn = document.getElementById('scissors');
+scissorsBtn.addEventListener("click", function() {
+    let computerChoice = getComputerChoice();
+    let playerSelection = scissorsBtn.textContent;
+
+    playerSelection = playerSelection.slice().toLowerCase();
+    playerSelection = playerSelection.replace(/\n/g,""); 
+    playerSelection = playerSelection.trim();
+    computerChoice = computerChoice.slice().toLowerCase();
+
+    let roundResult = playRound(playerSelection, computerChoice);
+
+    console.log(roundResult);
+    
+});
+
+
+
 // function game() {
 //     for (let i = 0; i < 5; i++) {
 //         const computerChoice = getComputerChoice();
@@ -59,7 +109,7 @@ function playRound(playerSelection, computerChoice) {
 //     }
 // }
 
-game()
+// game()
 
 
 
