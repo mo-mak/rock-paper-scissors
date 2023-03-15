@@ -13,7 +13,7 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function playRound(playerSelection, computerChoice) {
+function gameLogic(playerSelection, computerChoice) {
     
     playerSelection = playerSelection.slice().toLowerCase(); //make string lower case 
     computerChoice = computerChoice.slice().toLowerCase(); //make string lower case
@@ -48,6 +48,10 @@ function playRound(playerSelection, computerChoice) {
     } 
 }
 
+const scoreCounter = function() {
+
+};
+
 const rockBtn = document.getElementById('rock');
 rockBtn.addEventListener("click", function() {
     let computerChoice = getComputerChoice();
@@ -64,7 +68,7 @@ rockBtn.addEventListener("click", function() {
     playerSelection = playerSelection.trim();
     computerChoice = computerChoice.slice().toLowerCase();
 
-    let roundResult = playRound(playerSelection, computerChoice);
+    let roundResult = gameLogic(playerSelection, computerChoice);
 
     displayResults(roundResult);
 });
@@ -80,7 +84,7 @@ paperBtn.addEventListener("click", function() {
     playerSelection = playerSelection.trim();
     computerChoice = computerChoice.slice().toLowerCase();
 
-    let roundResult = playRound(playerSelection, computerChoice);
+    let roundResult = gameLogic(playerSelection, computerChoice);
 
     displayResults(roundResult); 
 });
@@ -96,7 +100,7 @@ scissorsBtn.addEventListener("click", function() {
     playerSelection = playerSelection.trim();
     computerChoice = computerChoice.slice().toLowerCase();
 
-    let roundResult = playRound(playerSelection, computerChoice);
+    let roundResult = gameLogic(playerSelection, computerChoice);
 
     displayResults(roundResult);
 });
@@ -126,7 +130,7 @@ const displayResults = function(result) {
 //         const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1,).toLowerCase();
         
 //         console.log(`You chose: ${playerChoice}, Computer chose: ${computerChoice}`)
-//         console.log(playRound(playerSelection, computerChoice));
+//         console.log(gameLogic(playerSelection, computerChoice));
 //     }
 // }
 
