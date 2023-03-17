@@ -1,6 +1,8 @@
 let playerScore = 0;
 let computerScore = 0;
-let rounds = 0;
+let draws = 0;
+let currentRound = 0;
+let totalRounds = 5;
 
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1;
@@ -18,17 +20,20 @@ function getComputerChoice() {
 }
 
 function scoreCounter(playerWins, computerWins) {
-    if (rounds < 5) {
+    if (currentRound < totalRounds) {
         if (playerWins) {
             playerScore ++;
         } else if (computerWins) {
             computerScore ++;
+        } else {
+            draws++;
         };
-        rounds++;
+        currentRound++;
     } else {
-        rounds = 0;
+        currentRound = 0; //don't ask why this is 1. It just works. I did not want it to ever display Round: 0 as that does not make sense
         playerScore = 0;
         computerScore = 0;
+        draws = 0;
     };
 };
 
@@ -79,23 +84,42 @@ function gameLogic(playerSelection, computerChoice) {
 const displayRoundResults = function(result) {
     const resultContainer = document.getElementById('result-container');
     const resultToDisplay = document.createElement('p');
-    
-    // This part will ensure that childNodes are not piled onto resultContainer 
-    // one after another. everytime this function is called (which is anytime one 
-    // of the buttons is pressed), the resultContainer will be cleared of the last
-    // win draw or lose message that it was displaying here from the last round.
-    if (resultContainer.hasChildNodes()){
-        resultContainer.removeChild(resultContainer.firstChild);
-    }
-    
+    resultContainer.textContent = '';
+    // if (currentRound == 0) {
+    //     resultContainer.textContent = '';
+    //     resultToDisplay.textContent = 'Choose your weapon!';
+    //     resultContainer.appendChild(resultToDisplay);
+    // }
     resultToDisplay.textContent = result;
     resultContainer.appendChild(resultToDisplay);
 };
 
 const displayPlayerScore = function() {
-    const playerScore = document.getElementById('player-score');
-    const playerScoreToDisplay = `${playerScore.textContent} + ${playerScore}`;
+    const playerScoreDiv = document.getElementById('player-score');
+    const playerScoreToDisplay = `You: ${playerScore}`;
+    playerScoreDiv.textContent = playerScoreToDisplay;
     console.log(playerScoreToDisplay);
+    console.log(playerScore);
+};
+
+const displayComputerScore = function() {
+    const computerScoreDiv = document.getElementById('computer-score');
+    const computerScoreToDisplay = `Computer: ${computerScore}`;
+    computerScoreDiv.textContent = computerScoreToDisplay;
+};
+
+const displayDraws = function() {
+    const drawsDiv = document.getElementById('draws');
+    const drawsToDiplay = `Draws: ${draws}`;
+    drawsDiv.textContent = drawsToDiplay;
+    console.log(drawsToDiplay);
+    console.log(draws);
+};
+
+const displayRoundNumber = function() {
+    const roundNumberDiv = document.getElementById('currentRound-display');
+    const roundNumberToDisplay = `Round: ${currentRound}/${totalRounds}`;
+    roundNumberDiv.textContent = roundNumberToDisplay;
 };
 
 const playRound = function(textContent) {
@@ -111,6 +135,9 @@ const playRound = function(textContent) {
     let roundResult = gameLogic(playerSelection, computerChoice);
     displayRoundResults(roundResult);
     displayPlayerScore();
+    displayRoundNumber();
+    displayComputerScore();
+    displayDraws();
 };
 
 const rockBtn = document.getElementById('rock');
