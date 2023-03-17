@@ -16,4 +16,9 @@
 
 #result-container{
     height: 50px;
+    text-align: center;
+}
+
+#score-board {
+    height: 50px;
 }

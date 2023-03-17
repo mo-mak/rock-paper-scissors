@@ -1,3 +1,7 @@
+let playerScore = 0;
+let computerScore = 0;
+let rounds = 0;
+
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3) + 1;
     let computerChoice = '';
@@ -13,6 +17,19 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+function scoreCounter(playerWins, computerWins) {
+    if (rounds < 5) {
+        if (playerWins) {
+            playerScore ++;
+        } else if (computerWins) {
+            computerScore ++;
+        };
+        rounds++;
+    } else {
+        rounds = 0;
+    };
+};
+
 function gameLogic(playerSelection, computerChoice) {
     
     playerSelection = playerSelection.slice().toLowerCase(); //make string lower case 
@@ -20,90 +37,42 @@ function gameLogic(playerSelection, computerChoice) {
     
     //rock vs paper
     if (playerSelection == 'rock' && computerChoice == 'paper') { 
+        scoreCounter(false, true);
         return ('You lose! Paper beats Rock...');
     
     //rock vs scissors
     } else if (playerSelection == 'rock' && computerChoice == 'scissors') { 
+        scoreCounter(true, false);
         return ('You win! Rock beats Scissors!');
     
     //paper vs rock
     } else if (playerSelection == 'paper' && computerChoice == 'rock') {
+        scoreCounter(true, false);
         return ('You win! Paper beats Rock!');
     
     //paper vs scissors
     } else if (playerSelection == 'paper' && computerChoice == 'scissors') {
+        scoreCounter(false, true);
         return ('You lose! Scissors beats Paper!');
     
     //scissors vs rock
     } else if (playerSelection == 'scissors' && computerChoice == 'rock') {
+        scoreCounter(false, true);
         return ('You lose! Rock beats Scissors!');
     
     //scissors vs paper
     } else if (playerSelection == 'scissors' && computerChoice == 'paper') {
+        scoreCounter(true, false);
         return ('You win! Scissors beats Paper!');
     
     //draw
     } else if (playerSelection == computerChoice) {
+        scoreCounter(false, false);
         return ("'Oy! It's a draw!'");
     } 
 }
 
-const scoreCounter = function() {
 
-};
-
-const rockBtn = document.getElementById('rock');
-rockBtn.addEventListener("click", function() {
-    let computerChoice = getComputerChoice();
-    let playerSelection = rockBtn.textContent;
-
-    // this section may look strange. There are 2 things happening here:
-    // 1. both selections are being converted to lowercase for game logic purposes
-    // 2. the playerSelection variable which is derived from the textContent of the 
-    //    rockBtn at first will look like this: "\n      rock\n       ". Therefore 
-    //    it is very important to first remove the \n and then trim the spaces of the
-    //    variable in order to get "rock" 
-    playerSelection = playerSelection.slice().toLowerCase();
-    playerSelection = playerSelection.replace(/\n/g,""); 
-    playerSelection = playerSelection.trim();
-    computerChoice = computerChoice.slice().toLowerCase();
-
-    let roundResult = gameLogic(playerSelection, computerChoice);
-
-    displayResults(roundResult);
-});
-
-const paperBtn = document.getElementById('paper');
-paperBtn.addEventListener("click", function() {
-    let computerChoice = getComputerChoice();
-    let playerSelection = paperBtn.textContent;
-
-    //See comment about this section in rockBtn
-    playerSelection = playerSelection.slice().toLowerCase();
-    playerSelection = playerSelection.replace(/\n/g,""); 
-    playerSelection = playerSelection.trim();
-    computerChoice = computerChoice.slice().toLowerCase();
-
-    let roundResult = gameLogic(playerSelection, computerChoice);
-
-    displayResults(roundResult); 
-});
-
-const scissorsBtn = document.getElementById('scissors');
-scissorsBtn.addEventListener("click", function() {
-    let computerChoice = getComputerChoice();
-    let playerSelection = scissorsBtn.textContent;
-
-    //See comment about this section in rockBtn
-    playerSelection = playerSelection.slice().toLowerCase();
-    playerSelection = playerSelection.replace(/\n/g,""); 
-    playerSelection = playerSelection.trim();
-    computerChoice = computerChoice.slice().toLowerCase();
-
-    let roundResult = gameLogic(playerSelection, computerChoice);
-
-    displayResults(roundResult);
-});
 
 const displayResults = function(result) {
     const resultContainer = document.getElementById('result-container');
@@ -121,21 +90,39 @@ const displayResults = function(result) {
     resultContainer.appendChild(resultToDisplay);
 };
 
+const displayPlayerScore = function() {
+    const playerScore = document.getElementById('player-score');
+    const playerScoreToDisplay = playerScore.textContent;
+    console.log(playerScoreToDisplay);
+};
 
+const playRound = function(textContent) {
+    let computerChoice = getComputerChoice();
+    let playerSelection = textContent;
+    
+    //parses the playerSelection from "\n    rock\n    " to "rock" 
+    playerSelection = playerSelection.slice().toLowerCase();
+    playerSelection = playerSelection.replace(/\n/g,""); 
+    playerSelection = playerSelection.trim();
+    computerChoice = computerChoice.slice().toLowerCase();
+    
+    let roundResult = gameLogic(playerSelection, computerChoice);
+    displayResults(roundResult);
+};
 
-// function game() {
-//     for (let i = 0; i < 5; i++) {
-//         const computerChoice = getComputerChoice();
-//         const playerSelection = prompt("Choose your weapon: Rock, Paper, or Scissor");
-//         const playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1,).toLowerCase();
-        
-//         console.log(`You chose: ${playerChoice}, Computer chose: ${computerChoice}`)
-//         console.log(gameLogic(playerSelection, computerChoice));
-//     }
-// }
+const rockBtn = document.getElementById('rock');
+rockBtn.addEventListener("click", function() {
+    playRound(rockBtn.textContent);
+});
 
-// game()
+const paperBtn = document.getElementById('paper');
+paperBtn.addEventListener("click", function() {
+    playRound(paperBtn.textContent); 
+});
 
-
+const scissorsBtn = document.getElementById('scissors');
+scissorsBtn.addEventListener("click", function() {
+    playRound(scissorsBtn.textContent);
+});
 
 
