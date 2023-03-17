@@ -27,6 +27,8 @@ function scoreCounter(playerWins, computerWins) {
         rounds++;
     } else {
         rounds = 0;
+        playerScore = 0;
+        computerScore = 0;
     };
 };
 
@@ -74,7 +76,7 @@ function gameLogic(playerSelection, computerChoice) {
 
 
 
-const displayResults = function(result) {
+const displayRoundResults = function(result) {
     const resultContainer = document.getElementById('result-container');
     const resultToDisplay = document.createElement('p');
     
@@ -92,7 +94,7 @@ const displayResults = function(result) {
 
 const displayPlayerScore = function() {
     const playerScore = document.getElementById('player-score');
-    const playerScoreToDisplay = playerScore.textContent;
+    const playerScoreToDisplay = `${playerScore.textContent} + ${playerScore}`;
     console.log(playerScoreToDisplay);
 };
 
@@ -107,7 +109,8 @@ const playRound = function(textContent) {
     computerChoice = computerChoice.slice().toLowerCase();
     
     let roundResult = gameLogic(playerSelection, computerChoice);
-    displayResults(roundResult);
+    displayRoundResults(roundResult);
+    displayPlayerScore();
 };
 
 const rockBtn = document.getElementById('rock');
