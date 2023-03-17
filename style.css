@@ -1,6 +1,7 @@
 #main-container{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding: 200px;
     gap: 20px;
@@ -16,9 +17,12 @@
 
 #result-container{
     height: 50px;
+    width: 200px;
     text-align: center;
+    border: 2px solid red;
 }
 
 #score-board {
-    
+    border: 2px solid red;
+    width: 200px;
 }
